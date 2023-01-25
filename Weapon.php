@@ -8,8 +8,8 @@ class Weapon
 {
 
     // Data or Property
-    public $name;
-    public $attack;
+    private $name;
+    private $weaponAttack;
 
     // Behaviour or Method
 
@@ -19,12 +19,28 @@ class Weapon
     public function __construct($name, $attack)
     {
         $this->name = $name;
-        $this->attack = $attack;
+        $this->weaponAttack = $attack;
     }
 
-    public function WeaponInformation()
+    // Function with return without parameter
+
+    // Read only
+    public function getWeaponName()
     {
         //  $this->name
-        echo "Weapon name: $this->name Weapon attack: $this->attack";
+        return $this->name;
+    }
+    public function getWeaponAttack()
+    {
+        return $this->weaponAttack;
+    }
+    // Write only
+    public function setWeaponAttack($attack)
+    {
+        $this->weaponAttack = $attack;
+    }
+    public function setWeaponName($weaponName)
+    {
+        $this->name = $weaponName;
     }
 }
