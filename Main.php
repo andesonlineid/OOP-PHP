@@ -63,7 +63,6 @@ class Player
             "Player Total Health: " . $this->getTotalHealth() . "\n" .
             "Player Weapon: " . $this->weapon->getWeaponName() . "\n";
 
-
         // $this->weapon->WeaponInformation();
     }
 
