@@ -8,14 +8,16 @@ class Products
     private $author;
     private $publisher;
     private $price;
+    protected $discount;
 
     // Constructor
-    public function __construct($title = "null", $author = "null", $publisher = "null", $price = 0)
+    public function __construct($title = "null", $author = "null", $publisher = "null", $price = 0, $discount = 0)
     {
         $this->title = $title;
         $this->author = $author;
         $this->publisher = $publisher;
         $this->price = $price;
+        $this->discount = $discount;
     }
 
 
@@ -38,9 +40,21 @@ class Products
     {
         return $this->price;
     }
+
     public function getLabel()
     {
         return  "$this->author, $this->publisher";
+    }
+
+    public function getPriceWithDiscount()
+    {
+        return $this->getPrice() - (($this->getPrice() * $this->discount)  / 100);
+    }
+
+
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
     }
 
     // Child class Extend parent functionality
@@ -58,10 +72,10 @@ class Comic extends Products
     // When we're using child class to access method or property on parent
     // child class will looking nearest propety or method 
     // If in child class doesn't have property or method then will looking on parent class
-    public function __construct($title = "null", $author = "null", $publisher = "null", $price = 0, $page)
+    public function __construct($title = "null", $author = "null", $publisher = "null", $price = 0, $page, $discount)
     {
         // Override constructor
-        parent::__construct($title, $author, $publisher, $price);
+        parent::__construct($title, $author, $publisher, $price, $discount);
         $this->page = $page;
     }
 
@@ -88,11 +102,11 @@ class Game extends Products
     private $hours;
 
     // put general and spesifik material that you need
-    public function __construct($title = "null", $author = "null", $publisher = "null", $price = 0, $hours)
+    public function __construct($title = "null", $author = "null", $publisher = "null", $price = 0, $hours, $discount)
     {
         // Override constructor function from parent 
         // Choose what general property that u want to use from parent class
-        parent::__construct($title, $author, $publisher, $price);
+        parent::__construct($title, $author, $publisher, $price, $discount);
         $this->hours = $hours;
     }
 
@@ -109,7 +123,7 @@ class Game extends Products
 
 
 // Using object as a datatype
-// class PrintProductInformation
+// class PrintProductInformation    
 // {
 //     public function detailInformation(Products $product)
 //     {
@@ -125,11 +139,15 @@ class Game extends Products
 // $product1 = new Comic("Naruto", "Masashi Kishimoto", "PT. Gramedia", 10000);
 
 // After override constructor
-$comic1 = new Comic("Naruto", "Masashi Kishimoto", "PT. Gramedia", 10000, 120);
-$game1 = new Game("Valhalla", "Arigato Kimochi", "PT. Arigatou", 20000, "~ 50");
+$comic1 = new Comic("Naruto", "Masashi Kishimoto", "PT. Gramedia", 10000, 120, 10);
+$game1 = new Game("Valhalla", "Arigato Kimochi", "PT. Arigatou", 20000, "~ 50", 50);
 
 echo $comic1->getDetailsInformation();
 echo $game1->getDetailsInformation();
+echo "\nPrice: {$game1->getPrice()} \n";
+$game1->setDiscount(20);
+echo $comic1->getPriceWithDiscount();
+echo "Price with discount: {$game1->getPriceWithDiscount()}";
 
 
 
