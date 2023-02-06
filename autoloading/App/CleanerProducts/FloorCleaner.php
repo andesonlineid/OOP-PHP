@@ -1,5 +1,7 @@
 <?php
 
+namespace App\CleanerProducts;
+
 class FloorCleaner extends CleanerProduct
 {
 
@@ -10,7 +12,7 @@ class FloorCleaner extends CleanerProduct
 
         // Inherit parent constructor
         parent::__construct($name, $author, $publisher, $price);
-        $this->$perfume = $perfume;
+        $this->perfume = $perfume;
     }
 
     public function setPerfume($perfume)
@@ -23,11 +25,12 @@ class FloorCleaner extends CleanerProduct
         return $this->perfume;
     }
 
+    // Implement abstract method
     public function getInfo()
     {
         $str = "Product Name : {$this->name} Author: {$this->author} 
         Publisher {$this->publisher} Price: {$this->price}";
 
-        return  $str . "Perfume: " . $this->getPerfume();
+        return  $str . " Perfume: " . $this->getPerfume();
     }
 }
