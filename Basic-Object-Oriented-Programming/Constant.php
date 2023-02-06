@@ -1,4 +1,5 @@
 <?php
+// We use constant 
 
 // If we set value of constant
 // the value will never change
